@@ -60,7 +60,7 @@
 
     if (action === 'buy') {
       showStepper(card, 1);
-      card.querySelector('[data-action="increase"]').focus();
+      // card.querySelector('[data-action="increase"]').focus();
     }
 
     if (action === 'increase') {
@@ -70,7 +70,7 @@
     if (action === 'decrease') {
       if (qty <= 1) {
         showButton(card);
-        card.querySelector('[data-action="buy"]').focus();
+        // card.querySelector('[data-action="buy"]').focus();
       } else {
         showStepper(card, qty - 1);
       }
