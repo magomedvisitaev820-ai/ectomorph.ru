@@ -1107,6 +1107,13 @@ html {
   }
 }
 
-.product-card__image {
+.product-card,
+.product-card:hover,
+.product-card:active,
+.product-card:focus-within,
+.product-card__image,
+.product-card__buy,
+.stepper__button {
   transform: none !important;
+  transition: none !important;
 }
