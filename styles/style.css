@@ -579,12 +579,10 @@ html {
   inset: 0;
   z-index: 2;
   border-radius: inherit;
-  background: radial-gradient(
-    300px circle at var(--mx, 50%) var(--my, 30%),
-    rgba(140, 175, 255, 0.26),
-    rgba(60, 100, 255, 0.09) 45%,
-    transparent 70%
-  );
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 30%),
+      rgba(140, 175, 255, 0.26),
+      rgba(60, 100, 255, 0.09) 45%,
+      transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -598,11 +596,9 @@ html {
   z-index: 3;
   padding: 1px;
   border-radius: inherit;
-  background: radial-gradient(
-    240px circle at var(--mx, 50%) var(--my, 30%),
-    rgba(170, 200, 255, 0.95),
-    transparent 65%
-  );
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 30%),
+      rgba(170, 200, 255, 0.95),
+      transparent 65%);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -620,16 +616,21 @@ html {
     transform: translateY(-6px);
     box-shadow: 0 24px 60px rgba(20, 50, 160, 0.3);
   }
+
   .product-card:hover .product-card__image {
     transform: scale(1.06) translateY(-4px);
   }
-}
 
-.product-card:hover::before,
-.product-card:hover::after,
-.product-card--lit::before,
-.product-card--lit::after {
-  opacity: 1;
+  .product-card:hover .product-card__image {
+    transform: scale(1.06) translateY(-4px);
+  }
+
+  .product-card:hover::before,
+  .product-card:hover::after,
+  .product-card--lit::before,
+  .product-card--lit::after {
+    opacity: 1;
+  }
 }
 
 .product-card__badge {
@@ -671,10 +672,6 @@ html {
   object-fit: contain;
   filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.5));
   transition: transform 0.45s ease;
-}
-
-.product-card:hover .product-card__image {
-  transform: scale(1.06) translateY(-4px);
 }
 
 .product-card__body {
@@ -1081,7 +1078,8 @@ html {
     width: 36px;
     height: 36px;
   }
-    .header__actions .button__icon {
+
+  .header__actions .button__icon {
     display: block;
     flex-shrink: 0;
     width: 18px;
