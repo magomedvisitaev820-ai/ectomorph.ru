@@ -2,6 +2,10 @@
    Переменные
    ========================================================================== */
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --color-bg: #04070d;
   --color-surface: #0d1426;
@@ -615,10 +619,6 @@ html {
   .product-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 24px 60px rgba(20, 50, 160, 0.3);
-  }
-
-  .product-card:hover .product-card__image {
-    transform: scale(1.06) translateY(-4px);
   }
 
   .product-card:hover .product-card__image {
