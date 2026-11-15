@@ -15,25 +15,26 @@
   /* ----- 1. Подсветка: передаём позицию курсора в CSS-переменные -------- */
 
   function setGlow(card, clientX, clientY) {
-  var rect = card.getBoundingClientRect();
-  var x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
-  var y = Math.min(Math.max(clientY - rect.top, 0), rect.height);
-  card.style.setProperty('--mx', x + 'px');
-  card.style.setProperty('--my', y + 'px');
-  card.classList.add('product-card--lit');
-}
+    var rect = card.getBoundingClientRect();
+    var x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+    var y = Math.min(Math.max(clientY - rect.top, 0), rect.height);
+    card.style.setProperty('--mx', x + 'px');
+    card.style.setProperty('--my', y + 'px');
+    card.classList.add('product-card--lit');
+  }
 
-grid.addEventListener('pointermove', function (event) {
-  var card = event.target.closest('.product-card');
-  if (card) setGlow(card, event.clientX, event.clientY);
-});
+  grid.addEventListener('pointermove', function (event) {
+    if (event.pointerType !== 'mouse') return;
+    var card = event.target.closest('.product-card');
+    if (card) setGlow(card, event.clientX, event.clientY);
+  });
 
-/* Мышь покидает карточку: свет остаётся на границе, где вышли */
-grid.addEventListener('pointerout', function (event) {
-  var card = event.target.closest('.product-card');
-  if (!card || card.contains(event.relatedTarget)) return;
-  setGlow(card, event.clientX, event.clientY);
-});
+  /* Мышь покидает карточку: свет остаётся на границе, где вышли */
+  grid.addEventListener('pointerout', function (event) {
+    var card = event.target.closest('.product-card');
+    if (!card || card.contains(event.relatedTarget)) return;
+    setGlow(card, event.clientX, event.clientY);
+  });
 
   /* ----- 2. Кнопка «В корзину» и счётчик «− 1 +» ------------------------ */
 
