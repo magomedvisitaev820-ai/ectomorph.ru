@@ -1,0 +1,132 @@
+.header {
+  font-family: var(--font-onest);
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+  flex-shrink: 0;
+  padding: 14px 0;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.header.is-scrolled {
+  border-bottom-color: var(--color-border-soft);
+  background: linear-gradient(180deg,
+      rgba(13, 20, 38, 0.72),
+      rgba(8, 14, 30, 0.48));
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--color-border-soft);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.logo__icon {
+  flex-shrink: 0;
+}
+
+.logo__text {
+  font-family: var(--font-unbounded);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.nav__list {
+  display: flex;
+  gap: 32px;
+}
+
+.nav__link {
+  color: var(--color-link);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--color-text);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 980px) {
+  /* ----- Шапка: логотип и две круглые кнопки ----- */
+
+  .header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .header__inner {
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__actions {
+    flex-shrink: 0;
+    gap: 8px;
+  }
+
+  .header__actions .button {
+    position: relative;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    gap: 0;
+    border-radius: 50%;
+    font-size: 0;
+    overflow: visible;
+  }
+
+  .header__actions .button__text {
+    display: none;
+  }
+
+  .header__actions .button__count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    font-size: 11px;
+  }
+
+  .header__actions .button__icon {
+    display: block;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+  }
+
+  .logo__text {
+    font-size: 14px;
+  }
+}

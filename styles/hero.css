@@ -1,0 +1,325 @@
+.hero {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(48px, 6vw, 80px);
+  align-items: center;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-block: 40px 80px;
+  min-width: 0;
+}
+
+.hero__eyebrow {
+  color: #8fa4d6;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.hero__title {
+  margin-top: clamp(14px, 3vh, 28px);
+  font-family: var(--font-unbounded);
+  color: var(--color-text);
+  font-size: clamp(41px, calc(4.533vw + 6.995px), 80px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.hero__title-accent {
+  display: block;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffffff, var(--color-accent-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__text {
+  max-width: 500px;
+  margin-top: clamp(16px, 3vh, 32px);
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-family: var(--font-onest);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(20px, 4vh, 36px);
+}
+
+.hero__stats {
+  margin-top: clamp(24px, 5vh, 48px);
+}
+
+/* ==========================================================================
+   Показатели
+   ========================================================================== */
+
+.stats {
+  display: flex;
+  gap: 0;
+  max-width: 520px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border-soft);
+  justify-content: space-between;
+  opacity: 0.6;
+}
+
+.stats__label {
+  color: var(--color-text-faint);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.stats__value {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  font-family: var(--font-onest);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Визуал: фигура, орбиты, товары
+   ========================================================================== */
+
+/*
+  Сцена .visual__stage повторяет пропорции фото (489 x 510).
+  Благодаря этому фигура всегда видна целиком, а орбиты и иконки
+  масштабируются вместе с ней на любом экране.
+*/
+.visual {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  margin-top: 40px;
+}
+
+.visual__stage {
+  position: relative;
+  width: 116%;
+  margin-left: -8%;
+  aspect-ratio: 489 / 510;
+}
+
+.visual__figure {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.visual__orbit {
+  list-style: none;
+}
+
+/* Линии орбит: размеры и наклон выставляет script */
+.orbit-ring {
+  position: absolute;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbit-ring--inner {
+  border-style: dotted;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Иконка на орбите: позицию и прозрачность выставляет script.
+   Размер считается от ширины сцены, поэтому иконки растут и уменьшаются вместе с фигурой */
+.orbit-item {
+  --icon-size: clamp(32px, 7%, 48px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--icon-size);
+  aspect-ratio: 1;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.orbit-item__img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 22%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* ==========================================================================
+   Marquee
+   ========================================================================== */
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+  border-block: 1px solid var(--color-border-soft);
+  padding-block: 18px;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-shrink: 0;
+  width: 100vw;
+}
+
+.marquee__group span {
+  white-space: nowrap;
+  font-size: 24px;
+  color: var(--color-text-muted);
+  font-family: "Unbounded", sans-serif;
+  font-weight: 400;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+@media (max-width: 980px) {
+  /* ----- Hero: фигура сверху, текст под ней ----- */
+
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .visual {
+    order: -1;
+    /* align-self: auto; */
+    margin-top: 0;
+  }
+
+  /* Сцена по центру, не шире 560px; высота считается по пропорции фото */
+  .visual__stage {
+    width: min(100%, 560px);
+    margin-inline: auto;
+  }
+
+  /* Низ фигуры плавно уходит в фон, текст заходит под неё */
+  .visual__figure {
+    -webkit-mask-image: linear-gradient(#000 68%, transparent);
+    mask-image: linear-gradient(#000 68%, transparent);
+  }
+
+  .orbit-item {
+    --icon-size: clamp(34px, 9%, 52px);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    margin-top: -40px;
+    padding-top: 0;
+    padding-bottom: 40px;
+  }
+
+  .hero__title {
+    font-size: clamp(38px, 12vw, 64px);
+  }
+
+  .hero__text {
+    font-size: 15px;
+  }
+
+  .hero__actions {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .hero__actions .button {
+    flex: 1;
+    height: 50px;
+    padding: 0 14px;
+    border-radius: 25px;
+    font-size: 14px;
+  }
+
+  .stats {
+    max-width: none;
+    opacity: 1;
+  }
+
+  /* ----- Бегущая строка ----- */
+
+  .marquee__group {
+    width: auto;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-right: 40px;
+  }
+
+  .marquee__group span {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero__actions {
+    flex-wrap: wrap;
+  }
+
+  .hero__actions .button {
+    flex: 0 0 auto;
+    padding: 0 28px;
+  }
+
+  .hero__text {
+    font-size: 16px;
+  }
+
+  .stats {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }}
+
+  @media (max-width: 900px) and (orientation: landscape) and (max-height: 520px) {
+  .visual__stage {
+    width: min(100%, 560px, calc((100vh - var(--header-height)) * 0.95));
+    width: min(100%, 560px, calc((100svh - var(--header-height)) * 0.95));
+  }
+
+  .hero__title {
+    font-size: clamp(34px, 9vh, 56px);
+  }
+}
